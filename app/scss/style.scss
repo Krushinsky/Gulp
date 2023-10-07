@@ -1,4 +1,10 @@
 $primary-color: red;
+
 h1{
-    color:$primary-color
+	z-index: inherit;
+
+	margin: auto;
+
+	color:$primary-color;
+	background-color: aqua;
 }

@@ -16,12 +16,12 @@ const ttf2woff2 = require('gulp-ttf2woff2');
 const svgSprite = require('gulp-svg-sprite');
 
 function pages() {
-    return src('app/pages/*.html')
-        .pipe(include({
+  return src('app/pages/*.html')
+      .pipe(include({
         includePaths: 'app/components',
-    }))
-        .pipe(dest('app'))
-        .pipe(browserSync.stream());
+      }))
+      .pipe(dest('app'))
+      .pipe(browserSync.stream());
 }
 
 function fonts() {
@@ -72,7 +72,7 @@ function scripts() {
 }
 
 function styles() {
-  return src('app/scss/style.scss')
+  return src(['app/scss/*.scss'])
       .pipe(autoprefixer({overrideBrowserslist: ['last 10 version']}))
       .pipe(concat('style.min.css'))
       .pipe(scss({outputStyle: 'compressed'}))
@@ -86,7 +86,7 @@ function watching() {
       baseDir: 'app/',
     },
   });
-  watch(['app/scss/style.scss'], styles);
+  watch(['app/scss/*.scss'], styles);
   watch(['app/images/src'], images);
   watch(['app/js/main.js'], scripts);
   watch(['app/components/*', 'app/pages/*'], pages);
@@ -100,7 +100,7 @@ function cleanDist() {
 
 function building() {
   return src([
-    'app/css/style.min.css',
+    'app/css/*.css',
     'app/images/*.*',
     '!app/images/*.svg',
     'app/images/sprite.svg',
